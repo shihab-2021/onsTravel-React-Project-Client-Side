@@ -8,7 +8,7 @@ export default function ManageRequestedBlogs() {
   const [isLoading, setIsLoading] = React.useState(true);
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
-    fetch("http://localhost:5000/requestedBlogs")
+    fetch("https://pure-refuge-78290.herokuapp.com/requestedBlogs")
       .then((res) => res.json())
       .then((data) => setData(data))
       .then(() => setIsLoading(false))
@@ -16,7 +16,7 @@ export default function ManageRequestedBlogs() {
   }, []);
 
   const handleUpdateUser = (id) => {
-    const url = `http://localhost:5000/blogs/${id}`;
+    const url = `https://pure-refuge-78290.herokuapp.com/blogs/${id}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -29,7 +29,7 @@ export default function ManageRequestedBlogs() {
           alert("Update Successful");
         }
         console.log(data);
-        fetch("http://localhost:5000/requestedBlogs")
+        fetch("https://pure-refuge-78290.herokuapp.com/requestedBlogs")
           .then((res) => res.json())
           .then((data) => setData(data));
       });
