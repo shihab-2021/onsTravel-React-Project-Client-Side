@@ -52,7 +52,7 @@ const ManageProducts = () => {
           {products.map((singleProduct) => (
             <div key={singleProduct._id} className="col">
               <div>
-                <div className="card shadow" style={{ minHeight: "515px" }}>
+                <div className="card shadow" style={{ minHeight: "490px" }}>
                   <div className="d-flex justify-content-center align-items-center">
                     <img
                       src={singleProduct.image1}
@@ -73,6 +73,16 @@ const ManageProducts = () => {
                       precision={0.5}
                       readOnly
                     />
+                    <h6 className="card-title">Name: {singleProduct.name}</h6>
+                    <h6>Email: {singleProduct.email}</h6>
+                    <p
+                      className="border border-warning rounded-pill d-inline p-1"
+                      style={{ backgroundColor: "#dbe3e3" }}
+                    >
+                      <small className="text-danger">
+                        {singleProduct.condition}
+                      </small>
+                    </p>
                   </div>
                   <div
                     className="d-flex"

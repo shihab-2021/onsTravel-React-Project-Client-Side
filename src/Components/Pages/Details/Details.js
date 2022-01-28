@@ -31,6 +31,25 @@ const Details = () => {
   console.log(user);
 
   const itemDetail = data.filter((td) => td._id === blogId);
+  const topRatedSpot = data.filter((td) => td.rating === 5);
+  console.log(topRatedSpot);
+
+  const handleUpdateUser = (id) => {
+    const url = `https://pure-refuge-78290.herokuapp.com/blogs/${id}`;
+    fetch(url, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          alert("Update Successful");
+        }
+        document.getElementById("approveBtn").style.display = "none";
+      });
+  };
 
   return (
     <div>
@@ -57,7 +76,13 @@ const Details = () => {
                 {itemDetail[0]?.place}
               </h2>
               {admin && itemDetail[0].condition === "pending" && (
-                <button className="btn btn-outline-danger ">Approve</button>
+                <button
+                  id="approveBtn"
+                  onClick={() => handleUpdateUser(itemDetail[0]._id)}
+                  className="btn btn-outline-danger "
+                >
+                  Approve
+                </button>
               )}
             </div>
             {/* carousel  */}
@@ -121,15 +146,43 @@ const Details = () => {
               </button>
             </div>
 
-            <h6 className="pt-4 fw-bold text-secondary">
-              <span className="text-dark fs-3">Description :</span>
-              <br />
-              <p className="pt-3 lh-base fs-6">{itemDetail[0]?.detail1}</p>
-              <br />
-              <p className="pt-3 lh-base fs-6">{itemDetail[0]?.detail2}</p>
-              <br />
-              <p className="pt-3 lh-base fs-6">{itemDetail[0]?.detail3}</p>
-            </h6>
+            <div className="row">
+              <div className="col-sm-12 col-md-8">
+                <h6 className="pt-4 fw-bold text-secondary">
+                  <span className="text-dark fs-3">Description :</span>
+                  <br />
+                  <p className="pt-3 lh-base fs-6">{itemDetail[0]?.detail1}</p>
+                  <br />
+                  <p className="pt-3 lh-base fs-6">{itemDetail[0]?.detail2}</p>
+                  <br />
+                  <p className="pt-3 lh-base fs-6">{itemDetail[0]?.detail3}</p>
+                </h6>
+              </div>
+              <div className="col-sm-12 col-md-4">
+                <div className="my-5 border rounded shadow">
+                  <h1 className="fs-4 text-center py-3 fw-bold">
+                    Top Rating Spots
+                  </h1>
+
+                  {topRatedSpot.map((userOrder) => (
+                    <div className="m-1 p-1 border rounded">
+                      <p className="fs-5 fw-bold">{userOrder.title}</p>
+                      <p>{userOrder.place}</p>
+                      <p>
+                        Cost: {userOrder.cost} <br /> Review: {userOrder.Review}
+                      </p>
+                      <Rating
+                        style={{ fontSize: "15px" }}
+                        name="half-rating-read"
+                        value={`${userOrder.rating}`}
+                        precision={0.5}
+                        readOnly
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </section>
 
           <div className="my-5 container">

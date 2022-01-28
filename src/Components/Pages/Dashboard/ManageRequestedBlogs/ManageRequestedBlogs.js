@@ -53,7 +53,6 @@ export default function ManageRequestedBlogs() {
         });
     }
   };
-  // let userOrders = data.filter((td) => td.condition === "pending");
 
   return (
     <div>
@@ -63,7 +62,12 @@ export default function ManageRequestedBlogs() {
           <CircularProgress className="mx-auto" />
         </div>
       )}
-      {!isLoading && (
+      {!isLoading && !data[0] && (
+        <div className="my-5">
+          <h3 className="text-info fw-bold">There is no blog requested.</h3>
+        </div>
+      )}
+      {data[0] && (
         <div>
           {data.map((userOrder) => (
             <div
@@ -74,7 +78,7 @@ export default function ManageRequestedBlogs() {
               <div className="row g-0">
                 <div className="col-md-4 d-flex align-items-center">
                   <img
-                    src={userOrder.product_Detail?.img1}
+                    src={userOrder.image1}
                     className="img-fluid p-2"
                     alt="..."
                   />
@@ -82,10 +86,9 @@ export default function ManageRequestedBlogs() {
                 <div className="col-md-8">
                   <div className="card-body">
                     <div>
-                      <h5 className="card-title fw-bold">
-                        {userOrder.product_Detail?.name?.slice(0, 50)} ...
-                      </h5>
-                      <h6>Place: ${userOrder.product_Detail?.price}</h6>
+                      <h5 className="card-title fw-bold">{userOrder.title}</h5>
+                      <h6>Place: {userOrder.place}</h6>
+                      <h6>Traveler: {userOrder.name}</h6>
                       <div className="mt-2">
                         <div className="mb-2">
                           <button
@@ -97,7 +100,7 @@ export default function ManageRequestedBlogs() {
                         </div>
                         <div>
                           <Link
-                            to={`/services/${userOrder.product_Detail?._id}`}
+                            to={`/details/${userOrder._id}`}
                             className="w-50 text-center my-2 link me-2"
                           >
                             <button className="btn btn-outline-info">

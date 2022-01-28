@@ -62,7 +62,7 @@ const HomeBlogs = () => {
                       />
                     </div>
                     <div className="card-body border-top">
-                      <h5>{singleBlog.title}</h5>
+                      <h5 className="fs-5 mb-1 fw-bold">{singleBlog.title}</h5>
                       <h6 className="card-title">{singleBlog.place}</h6>
                       <Rating
                         style={{ fontSize: "15px" }}
