@@ -70,7 +70,7 @@ const useFirebase = () => {
   // Save User Information
   const userData = (email, displayName, method) => {
     const user = { email, displayName };
-    fetch("https://arcane-oasis-37685.herokuapp.com/users", {
+    fetch("https://pure-refuge-78290.herokuapp.com/users", {
       method: method,
       headers: {
         "content-type": "application/json",
@@ -125,7 +125,7 @@ const useFirebase = () => {
   };
 
   useEffect(() => {
-    fetch(`https://arcane-oasis-37685.herokuapp.com/users/${user.email}`)
+    fetch(`https://pure-refuge-78290.herokuapp.com/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => setAdmin(data.admin));
   }, [user.email]);

@@ -17,16 +17,44 @@ const NotFound = () => {
               alt=""
             />
           </div>
-          <div className="col-sm-12 col-md-6 heading d-flex align-items-center text-center justify-content-center">
+          <div
+            style={{ fontFamily: `"Yanone Kaffeesatz", sans-serif` }}
+            className="col-sm-12 col-md-6 heading d-flex align-items-center text-center justify-content-center"
+          >
             <div>
-              <h1 style={{ fontWeight: "600" }}>Aww...Don't Cry.</h1>
-              <h5 className="pb-3" style={{ fontWeight: "600" }}>
+              <h1
+                style={{
+                  fontWeight: "600",
+                  fontFamily: `"Yanone Kaffeesatz", sans-serif`,
+                }}
+              >
+                Aww...Don't Cry.
+              </h1>
+              <h5
+                className="pb-3"
+                style={{
+                  fontWeight: "600",
+                  fontFamily: `"Yanone Kaffeesatz", sans-serif`,
+                }}
+              >
                 It's just a 404 Error!
               </h5>
-              <h4 style={{ fontWeight: "600" }}>
+              <h4
+                style={{
+                  fontWeight: "600",
+                  fontFamily: `"Yanone Kaffeesatz", sans-serif`,
+                }}
+              >
                 What you're looking for may have been misplaced
               </h4>
-              <h4 style={{ fontWeight: "600" }}>in long Term Memory.</h4>
+              <h4
+                style={{
+                  fontWeight: "600",
+                  fontFamily: `"Yanone Kaffeesatz", sans-serif`,
+                }}
+              >
+                in long Term Memory.
+              </h4>
             </div>
           </div>
         </div>

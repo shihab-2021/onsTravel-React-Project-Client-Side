@@ -21,8 +21,6 @@ const Details = () => {
   const [data, setData] = useState([]);
   const [approveBtn, setApproveBtn] = useState(false);
   const [bookingData, setBookingData] = useState({});
-  const photo = user?.photoURL;
-  console.log(photo);
 
   useEffect(() => {
     fetch("https://pure-refuge-78290.herokuapp.com/blogs")
@@ -34,9 +32,6 @@ const Details = () => {
 
   const itemDetail = data.filter((td) => td._id === blogId);
 
-  if (admin && itemDetail[0]?.condition === "pending") {
-    setApproveBtn(true);
-  }
   return (
     <div>
       <Header></Header>
@@ -53,15 +48,15 @@ const Details = () => {
                 className="fs-1"
                 style={{ fontFamily: `"Yanone Kaffeesatz", sans-serif` }}
               >
-                {itemDetail[0].title}
+                {itemDetail[0]?.title}
               </h2>
               <h2
                 className="fs-4"
                 style={{ fontFamily: `"Yanone Kaffeesatz", sans-serif` }}
               >
-                {itemDetail[0].place}
+                {itemDetail[0]?.place}
               </h2>
-              {approveBtn && (
+              {admin && itemDetail[0].condition === "pending" && (
                 <button className="btn btn-outline-danger ">Approve</button>
               )}
             </div>
@@ -77,7 +72,7 @@ const Details = () => {
                     className="d-block w-100 d-flex flex-column justify-content-center align-items-center text-center"
                     style={{
                       minHeight: "70vh",
-                      background: `linear-gradient(#00000000, #00000094), url(${itemDetail[0].image1}) no-repeat center center / cover`,
+                      background: `linear-gradient(#00000000, #00000094), url(${itemDetail[0]?.image1}) no-repeat center center / cover`,
                     }}
                   ></div>
                 </div>
@@ -86,7 +81,7 @@ const Details = () => {
                     className="d-block w-100 d-flex flex-column justify-content-center align-items-center text-center"
                     style={{
                       minHeight: "70vh",
-                      background: `linear-gradient(#00000000, #00000094), url(${itemDetail[0].image2}) no-repeat center center / cover`,
+                      background: `linear-gradient(#00000000, #00000094), url(${itemDetail[0]?.image2}) no-repeat center center / cover`,
                     }}
                   ></div>
                 </div>
@@ -95,7 +90,7 @@ const Details = () => {
                     className="d-block w-100 d-flex flex-column justify-content-center align-items-center text-center"
                     style={{
                       minHeight: "70vh",
-                      background: `linear-gradient(#00000000, #00000094), url(${itemDetail[0].image3}) no-repeat center center / cover`,
+                      background: `linear-gradient(#00000000, #00000094), url(${itemDetail[0]?.image3}) no-repeat center center / cover`,
                     }}
                   ></div>
                 </div>
@@ -150,7 +145,7 @@ const Details = () => {
                   height: "200px",
                   width: "200px",
                 }}
-                src={photo}
+                src={itemDetail[0]?.photo}
                 className="img-fluid rounded-circle p-2"
                 alt="..."
               />
@@ -160,13 +155,13 @@ const Details = () => {
                     style={{ fontFamily: `"Yanone Kaffeesatz", sans-serif` }}
                     className="fs-2"
                   >
-                    Name: {user.displayName}
+                    Name: {itemDetail[0]?.name}
                   </h1>
                   <h1
                     style={{ fontFamily: `"Yanone Kaffeesatz", sans-serif` }}
                     className="fs-5"
                   >
-                    Email: {user.email}
+                    Email: {itemDetail[0]?.email}
                   </h1>
                 </div>
               </div>

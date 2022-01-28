@@ -14,11 +14,12 @@ const HomeBlogs = () => {
       .then((data) => setAllProducts(data.result))
       .then(() => setIsLoading(false));
   }, []);
+  const allBlogs = allProducts.filter((td) => td?.condition === "approved");
   const size = 10;
-  console.log(allProducts.length);
+  console.log(allBlogs.length);
   let pageNumber = 0;
-  if (allProducts.length) {
-    pageNumber = Math.ceil(allProducts.length / size);
+  if (allBlogs.length) {
+    pageNumber = Math.ceil(allBlogs.length / size);
   }
   useEffect(() => {
     fetch(
@@ -28,6 +29,7 @@ const HomeBlogs = () => {
       .then((data) => setProducts(data.result))
       .then(() => setIsLoading(false));
   }, [page]);
+  const blogs = products.filter((td) => td?.condition === "approved");
 
   return (
     <div>
@@ -45,7 +47,7 @@ const HomeBlogs = () => {
         )}
         {!isLoading && (
           <div className="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2 py-5">
-            {products.map((singleBlog) => (
+            {blogs.map((singleBlog) => (
               <div key={singleBlog._id} className="col">
                 <div>
                   <div className="card shadow" style={{ minHeight: "450px" }}>
